@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 
 const ModalBackground = styled.div`
@@ -19,11 +19,11 @@ const ModalBody = styled.div`
   width: 50%;
 `
 
-interface Props {
+interface ModalProps {
   children: JSX.Element[] | JSX.Element
 }
 
-export const Modal = ({children}: Props) => {
+export const Modal: React.FC<ModalProps> = ({children}) => {
   const [shouldShow, setShouldShow] = useState(false)
 
   return (
