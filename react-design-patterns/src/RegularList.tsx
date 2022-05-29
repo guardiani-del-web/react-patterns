@@ -1,5 +1,6 @@
 import React from 'react'
-import {UserTypes} from './User'
+import {UserType} from './User'
+import {CommentType} from './Comment'
 import styled from 'styled-components'
 
 const List = styled.div`
@@ -8,7 +9,7 @@ const List = styled.div`
 `
 
 type RegularListProps = {
-  items?: UserTypes[]
+  items?: UserType[] | CommentType[]
   resoursname: string
   component: React.ElementType
 }

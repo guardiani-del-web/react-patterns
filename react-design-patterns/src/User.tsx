@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type UserTypes = {
+export type UserType = {
   id: number
   name: string
   username: string
@@ -12,7 +12,7 @@ export type UserTypes = {
 }
 
 type UserProps = {
-  user: UserTypes
+  user: UserType
 }
 
 export const User: React.FC<UserProps> = ({user}) => {

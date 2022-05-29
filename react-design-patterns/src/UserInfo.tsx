@@ -1,13 +1,12 @@
 import React from 'react'
 import {RegularList} from './RegularList'
-import {User, UserTypes} from './User'
+import {User, UserType} from './User'
 
 type UserInfoProps = {
-  users?: UserTypes[]
+  users?: UserType[]
 }
 
 export const UserInfo: React.FC<UserInfoProps> = ({users}) => {
-  console.log('users :', users)
   return (
     <div>
       <h1>List of Users</h1>
