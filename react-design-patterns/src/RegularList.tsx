@@ -1,6 +1,7 @@
 import React from 'react'
 import {UserType} from './User'
 import {CommentType} from './Comment'
+import {AlbumType} from './Album'
 import styled from 'styled-components'
 
 const List = styled.div`
@@ -9,7 +10,7 @@ const List = styled.div`
 `
 
 type RegularListProps = {
-  items?: UserType[] | CommentType[]
+  items?: UserType[] | CommentType[] | AlbumType[]
   resoursname: string
   component: React.ElementType
 }

@@ -1,8 +1,10 @@
-import {useState} from 'react'
 import {SplitScreen} from './SplitScreen'
 import {Container} from './Container'
 import {UserInfo} from './UserInfo'
 import {CommentInfo} from './CommentInfo'
+import {AlbumInfo} from './AlbumInfo'
+import {withAlbums} from './withAlbums'
+import {FormComponent} from './form'
 import {Modal} from './Modal'
 import './App.css'
 
@@ -21,6 +23,8 @@ export const getServerData = (url: string) => async () => {
 }
 
 function App() {
+  const AlbumComponent = withAlbums(AlbumInfo)
+
   return (
     <div className="App">
       <h1>App</h1>
@@ -28,6 +32,7 @@ function App() {
         <h1>Hello Modal</h1>
       </Modal>
       <SplitScreen left={LeftHandComponent} right={RightHandComponent} />
+      <FormComponent />
       <Container
         getDataFunc={getServerData(
           'https://jsonplaceholder.typicode.com/users',
@@ -44,6 +49,7 @@ function App() {
       >
         <CommentInfo />
       </Container>
+      <AlbumComponent />
     </div>
   )
 }
