@@ -4,7 +4,8 @@ import {UserInfo} from './UserInfo'
 import {CommentInfo} from './CommentInfo'
 import {AlbumInfo} from './AlbumInfo'
 import {withAlbums} from './withAlbums'
-import {FormComponent} from './form'
+import {FormComponent} from './FormComponent'
+import {FormComponentWithHooks} from './FormComponentWithHooks'
 import {Modal} from './Modal'
 import './App.css'
 
@@ -33,6 +34,7 @@ function App() {
       </Modal>
       <SplitScreen left={LeftHandComponent} right={RightHandComponent} />
       <FormComponent />
+      <FormComponentWithHooks />
       <Container
         getDataFunc={getServerData(
           'https://jsonplaceholder.typicode.com/users',

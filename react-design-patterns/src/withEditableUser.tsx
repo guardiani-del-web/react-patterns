@@ -1,40 +1,45 @@
 import React, {ComponentType, useState, useEffect} from 'react'
 import axios from 'axios'
+import {FormUserType} from './FormComponent'
 
 export function withEditableUser<T>(
   EnhancedComponent: ComponentType<T>,
   id: number,
+  sourceName: string,
 ) {
-  return (hocProps: Omit<T, 'onChange' | 'onReset' | 'onSave' | 'user'>) => {
-    const [originalUser, setOriginalUser] = useState({
-      name: '',
-      age: '',
-      hairColor: '',
-    })
-    const [user, setUser] = useState({name: '', age: '', hairColor: ''})
+  return (
+    hocProps: Omit<
+      T,
+      'onChange' | 'onReset' | 'onSave' | 'user' | 'sourceName'
+    >,
+  ) => {
+    const [originalData, setOriginalData] = useState<FormUserType>(
+      {} as FormUserType,
+    )
+    const [data, setData] = useState<FormUserType>({} as FormUserType)
 
     useEffect(() => {
       const getUser = async () => {
-        const response = await fetch(`/users/${id}`)
-        const user = await response.json()
-        setUser(user)
-        setOriginalUser(user)
+        const response = await fetch(`/${sourceName}/${id}`)
+        const data = await response.json()
+        setData(data)
+        setOriginalData(data)
       }
       getUser()
     }, [])
 
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-      setUser({...user, [e.currentTarget.name]: e.currentTarget.value})
+      setData({...data, [e.currentTarget.name]: e.currentTarget.value})
     }
 
     const onReset = () => {
-      setUser(originalUser)
+      setData(originalData)
     }
 
     const onSave = async () => {
-      const response = await axios.post(`/users/${id}`, {user})
-      setUser(response.data)
-      setOriginalUser(response.data)
+      const response = await axios.post(`/${sourceName}/${id}`, {user: data})
+      setData(response.data)
+      setOriginalData(response.data)
     }
 
     return (
@@ -43,7 +48,7 @@ export function withEditableUser<T>(
         onChange={onChange}
         onReset={onReset}
         onSave={onSave}
-        user={user}
+        user={data}
       />
     )
   }

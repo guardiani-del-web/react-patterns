@@ -1,60 +1,52 @@
-import {withEditableUser} from './withEditableUser'
-import {MouseEvent} from 'react'
+import {FC, MouseEvent} from 'react'
+import {FormUserType} from './FormComponent'
 
 type FormProps = {
-  onChange: () => void
-  onReset: () => void
-  onSave: () => void
-  user: {name: string; age: number; hairColor: string}
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void
+  user: FormUserType
+  handleReset: (e: MouseEvent<HTMLButtonElement>) => void
+  handleSave: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
-export const FormComponent = withEditableUser(
-  ({onChange, onReset, onSave, user}: FormProps) => {
-    const handleReset = (e: MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault()
-      onReset()
-    }
-
-    const handleSave = (e: MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault()
-      onSave()
-    }
-
-    return (
-      <>
-        <form>
-          <label htmlFor="name">
-            <input
-              type="text"
-              id="name"
-              onChange={onChange}
-              name="name"
-              value={user.name}
-            />
-          </label>
-          <label htmlFor="age">
-            <input
-              type="number"
-              id="number"
-              onChange={onChange}
-              name="age"
-              value={user.age}
-            />
-          </label>
-          <label htmlFor="hairColor">
-            <input
-              type="text"
-              id="hairColor"
-              onChange={onChange}
-              name="hairColor"
-              value={user.hairColor}
-            />
-          </label>
-          <button onClick={handleReset}>Reset</button>
-          <button onClick={handleSave}>Save form</button>
-        </form>
-      </>
-    )
-  },
-  234,
-)
+export const Form: FC<FormProps> = ({
+  onChange,
+  user,
+  handleReset,
+  handleSave,
+}) => {
+  return (
+    <>
+      <form>
+        <label htmlFor="name">
+          <input
+            type="text"
+            id="name"
+            onChange={onChange}
+            name="name"
+            value={user.name}
+          />
+        </label>
+        <label htmlFor="age">
+          <input
+            type="number"
+            id="number"
+            onChange={onChange}
+            name="age"
+            value={user.age}
+          />
+        </label>
+        <label htmlFor="hairColor">
+          <input
+            type="text"
+            id="hairColor"
+            onChange={onChange}
+            name="hairColor"
+            value={user.hairColor}
+          />
+        </label>
+        <button onClick={handleReset}>Reset</button>
+        <button onClick={handleSave}>Save form</button>
+      </form>
+    </>
+  )
+}
