@@ -17,7 +17,9 @@ const FormContainer = styled.form`
 `
 
 const ButtonsContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
 `
 
 const Input = styled.input`

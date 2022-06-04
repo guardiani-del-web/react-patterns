@@ -34,6 +34,13 @@ export const initialData = {
 const FormsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+`
+
+const Wrapper = styled.div`
+  padding: 16px;
+  max-width: 1240px;
+  margin: auto;
 `
 
 function App() {
@@ -41,33 +48,44 @@ function App() {
 
   return (
     <div className="App">
-      <h1>App</h1>
-      <Modal>
-        <h1>Hello Modal</h1>
-      </Modal>
-      <SplitScreen left={LeftHandComponent} right={RightHandComponent} />
-      <FormsContainer>
-        <FormComponent />
-        <FormComponentWithHooks />
-        <FormWidthRenderProps />
-      </FormsContainer>
-      <Container
-        getDataFunc={getServerData(
-          'https://jsonplaceholder.typicode.com/users',
-        )}
-        resourceName="users"
-      >
-        <UserInfo />
-      </Container>
-      <Container
-        getDataFunc={getServerData(
-          'https://jsonplaceholder.typicode.com/comments',
-        )}
-        resourceName="comments"
-      >
-        <CommentInfo />
-      </Container>
-      <AlbumComponent />
+      <Wrapper>
+        <h1>React Design Patterns</h1>
+        <Modal>
+          <h1>Hello Modal</h1>
+        </Modal>
+        <SplitScreen left={LeftHandComponent} right={RightHandComponent} />
+        <FormsContainer>
+          <div>
+            <h3>HOC</h3>
+            <FormComponent />
+          </div>
+          <div>
+            <h3>Hook</h3>
+            <FormComponentWithHooks />
+          </div>
+          <div>
+            <h3>Render Props</h3>
+            <FormWidthRenderProps />
+          </div>
+        </FormsContainer>
+        <Container
+          getDataFunc={getServerData(
+            'https://jsonplaceholder.typicode.com/users',
+          )}
+          resourceName="users"
+        >
+          <UserInfo />
+        </Container>
+        <Container
+          getDataFunc={getServerData(
+            'https://jsonplaceholder.typicode.com/comments',
+          )}
+          resourceName="comments"
+        >
+          <CommentInfo />
+        </Container>
+        <AlbumComponent />
+      </Wrapper>
     </div>
   )
 }
