@@ -1,12 +1,13 @@
 import {useState, useEffect, MouseEvent} from 'react'
 import {FormUserType} from './FormComponent'
 import axios from 'axios'
+import {initialData} from './App'
 
 export const useEditableUser = (url: string) => {
   const [originalData, setOriginalData] = useState<FormUserType>(
-    {} as FormUserType,
+    initialData as FormUserType,
   )
-  const [state, setState] = useState<FormUserType>({} as FormUserType)
+  const [state, setState] = useState<FormUserType>(initialData as FormUserType)
 
   useEffect(() => {
     const getData = async () => {

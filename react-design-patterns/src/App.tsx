@@ -6,6 +6,7 @@ import {AlbumInfo} from './AlbumInfo'
 import {withAlbums} from './withAlbums'
 import {FormComponent} from './FormComponent'
 import {FormComponentWithHooks} from './FormComponentWithHooks'
+import {FormWidthRenderProps} from './RenderProps'
 import {Modal} from './Modal'
 import './App.css'
 
@@ -23,6 +24,12 @@ export const getServerData = (url: string) => async () => {
   return data
 }
 
+export const initialData = {
+  name: '',
+  age: 0,
+  hairColor: '',
+}
+
 function App() {
   const AlbumComponent = withAlbums(AlbumInfo)
 
@@ -35,6 +42,7 @@ function App() {
       <SplitScreen left={LeftHandComponent} right={RightHandComponent} />
       <FormComponent />
       <FormComponentWithHooks />
+      <FormWidthRenderProps />
       <Container
         getDataFunc={getServerData(
           'https://jsonplaceholder.typicode.com/users',

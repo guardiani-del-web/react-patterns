@@ -1,6 +1,7 @@
 import React, {ComponentType, useState, useEffect} from 'react'
 import axios from 'axios'
 import {FormUserType} from './FormComponent'
+import {initialData} from './App'
 
 export function withEditableUser<T>(
   EnhancedComponent: ComponentType<T>,
@@ -14,9 +15,9 @@ export function withEditableUser<T>(
     >,
   ) => {
     const [originalData, setOriginalData] = useState<FormUserType>(
-      {} as FormUserType,
+      initialData as FormUserType,
     )
-    const [data, setData] = useState<FormUserType>({} as FormUserType)
+    const [data, setData] = useState<FormUserType>(initialData as FormUserType)
 
     useEffect(() => {
       const getUser = async () => {
