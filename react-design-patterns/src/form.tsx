@@ -1,5 +1,13 @@
 import {FC, MouseEvent} from 'react'
 import {FormUserType} from './FormComponent'
+import {
+  Button,
+  DangerButton,
+  PrimaryButton,
+  SmallSuccessButton,
+  PrimaryButtonPartial,
+  SecondaryButtonPartial,
+} from './Buttons'
 
 type FormProps = {
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
@@ -44,8 +52,8 @@ export const Form: FC<FormProps> = ({
             value={user.hairColor}
           />
         </label>
-        <button onClick={handleReset}>Reset</button>
-        <button onClick={handleSave}>Save form</button>
+        <DangerButton onClick={handleReset} text="Reset" />
+        <PrimaryButton onClick={handleSave} text="Save Fomr" />
       </form>
     </>
   )

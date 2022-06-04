@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import {PrimaryButtonPartial, TerciaryButtonPartial} from './Buttons'
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -28,11 +29,17 @@ export const Modal: React.FC<ModalProps> = ({children}) => {
 
   return (
     <>
-      <button onClick={() => setShouldShow(true)}>Show Modal</button>
+      <PrimaryButtonPartial
+        onClick={() => setShouldShow(true)}
+        text="Show Modal"
+      />
       {shouldShow && (
         <ModalBackground onClick={() => setShouldShow(false)}>
           <ModalBody onClick={e => e.stopPropagation()}>
-            <button onClick={() => setShouldShow(false)}>Hide Modal</button>
+            <TerciaryButtonPartial
+              onClick={() => setShouldShow(false)}
+              text="Hide Modal"
+            />
             {children}
           </ModalBody>
         </ModalBackground>
