@@ -3,6 +3,7 @@ import {Form} from './Form'
 import {FormUserType} from './FormComponent'
 import axios from 'axios'
 import {initialData} from './App'
+import {toast} from 'react-toastify'
 
 type ChildProps = {
   children: any
@@ -29,14 +30,22 @@ const EditableUser: FC<ChildProps> = ({children, url}) => {
     setData({...data, [e.currentTarget.name]: e.currentTarget.value})
   }
 
-  const onReset = () => {
+  const onReset = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     setData(originalData)
+    toast.success('Successfully Reset')
   }
 
-  const onSave = async () => {
+  const onSave = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     const response = await axios.post(`${url}`, {user: data})
-    setData(response.data)
-    setOriginalData(response.data)
+    if (response.statusText === 'OK') {
+      toast.success('Successfully Saved')
+      setData(response.data)
+      setOriginalData(response.data)
+    } else {
+      toast.error('Not succesfully Saved')
+    }
   }
 
   return <>{children(data, onChange, onReset, onSave)}</>

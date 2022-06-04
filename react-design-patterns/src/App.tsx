@@ -43,13 +43,22 @@ const Wrapper = styled.div`
   margin: auto;
 `
 
+const Title = styled.h1`
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  backdrop-filter: blur(5px);
+  z-index: 1;
+`
+
 function App() {
   const AlbumComponent = withAlbums(AlbumInfo)
 
   return (
     <div className="App">
       <Wrapper>
-        <h1>React Design Patterns</h1>
+        <Title>React Design Patterns</Title>
         <Modal>
           <h1>Hello Modal</h1>
         </Modal>

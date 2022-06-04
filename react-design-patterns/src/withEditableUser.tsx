@@ -2,6 +2,7 @@ import React, {ComponentType, useState, useEffect} from 'react'
 import axios from 'axios'
 import {FormUserType} from './FormComponent'
 import {initialData} from './App'
+import {toast} from 'react-toastify'
 
 export function withEditableUser<T>(
   EnhancedComponent: ComponentType<T>,
@@ -35,12 +36,18 @@ export function withEditableUser<T>(
 
     const onReset = () => {
       setData(originalData)
+      toast('Successfully Reset')
     }
 
     const onSave = async () => {
       const response = await axios.post(`/${sourceName}/${id}`, {user: data})
-      setData(response.data)
-      setOriginalData(response.data)
+      if (response.statusText === 'OK') {
+        toast.success('Successfully Saved')
+        setData(response.data)
+        setOriginalData(response.data)
+      } else {
+        toast.error('Not succesfully Saved')
+      }
     }
 
     return (
