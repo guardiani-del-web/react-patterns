@@ -1,13 +1,7 @@
 import {FC, MouseEvent} from 'react'
 import {FormUserType} from './FormComponent'
-import {
-  Button,
-  DangerButton,
-  PrimaryButton,
-  SmallSuccessButton,
-  PrimaryButtonPartial,
-  SecondaryButtonPartial,
-} from './Buttons'
+import {DangerButton, PrimaryButton} from './Buttons'
+import styled from 'styled-components'
 
 type FormProps = {
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
@@ -15,6 +9,23 @@ type FormProps = {
   handleReset: (e: MouseEvent<HTMLButtonElement>) => void
   handleSave: (e: MouseEvent<HTMLButtonElement>) => void
 }
+
+const FormContainer = styled.form`
+  display: grid;
+  place-items: center;
+  gap: 10px;
+`
+
+const ButtonsContainer = styled.div`
+  display: flex;
+`
+
+const Input = styled.input`
+  border: none;
+  border: 1px solid blue;
+  border-radius: 7px;
+  padding: 7px;
+`
 
 export const Form: FC<FormProps> = ({
   onChange,
@@ -24,9 +35,9 @@ export const Form: FC<FormProps> = ({
 }) => {
   return (
     <>
-      <form>
+      <FormContainer>
         <label htmlFor="name">
-          <input
+          <Input
             type="text"
             id="name"
             onChange={onChange}
@@ -35,7 +46,7 @@ export const Form: FC<FormProps> = ({
           />
         </label>
         <label htmlFor="age">
-          <input
+          <Input
             type="number"
             id="number"
             onChange={onChange}
@@ -44,7 +55,7 @@ export const Form: FC<FormProps> = ({
           />
         </label>
         <label htmlFor="hairColor">
-          <input
+          <Input
             type="text"
             id="hairColor"
             onChange={onChange}
@@ -52,9 +63,11 @@ export const Form: FC<FormProps> = ({
             value={user.hairColor}
           />
         </label>
-        <DangerButton onClick={handleReset} text="Reset" />
-        <PrimaryButton onClick={handleSave} text="Save Fomr" />
-      </form>
+        <ButtonsContainer>
+          <DangerButton onClick={handleReset} text="Reset" />
+          <PrimaryButton onClick={handleSave} text="Save Form" />
+        </ButtonsContainer>
+      </FormContainer>
     </>
   )
 }

@@ -7,6 +7,7 @@ import {withAlbums} from './withAlbums'
 import {FormComponent} from './FormComponent'
 import {FormComponentWithHooks} from './FormComponentWithHooks'
 import {FormWidthRenderProps} from './RenderProps'
+import styled from 'styled-components'
 import {Modal} from './Modal'
 import './App.css'
 
@@ -30,6 +31,11 @@ export const initialData = {
   hairColor: '',
 }
 
+const FormsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+`
+
 function App() {
   const AlbumComponent = withAlbums(AlbumInfo)
 
@@ -40,9 +46,11 @@ function App() {
         <h1>Hello Modal</h1>
       </Modal>
       <SplitScreen left={LeftHandComponent} right={RightHandComponent} />
-      <FormComponent />
-      <FormComponentWithHooks />
-      <FormWidthRenderProps />
+      <FormsContainer>
+        <FormComponent />
+        <FormComponentWithHooks />
+        <FormWidthRenderProps />
+      </FormsContainer>
       <Container
         getDataFunc={getServerData(
           'https://jsonplaceholder.typicode.com/users',
