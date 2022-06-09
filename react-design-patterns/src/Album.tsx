@@ -1,13 +1,15 @@
+import React from 'react'
+
 export type AlbumType = {
-  id: number
-  title: string
-  userId: number
+	id: number
+	title: string
+	userId: number
 }
 
 type AlbumProps = {
-  album: AlbumType
+	album: AlbumType
 }
 
-export const Album = ({album}: AlbumProps) => {
-  return <div>{album.title}</div>
+export const Album = ({ album }: AlbumProps) => {
+	return <div>{album.title}</div>
 }
