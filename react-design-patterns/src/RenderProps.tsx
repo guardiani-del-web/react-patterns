@@ -38,7 +38,7 @@ const EditableUser: FC<ChildProps> = ({ children, url }) => {
 
 	const onSave = async (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
-		const response = await axios.post(`${url}`, { user: data })
+		const response = await axios.put(`${url}`, { user: data })
 		if (response.statusText === 'OK') {
 			toast.success('Successfully Saved')
 			setData(response.data)

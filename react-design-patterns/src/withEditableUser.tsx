@@ -37,7 +37,7 @@ export function withEditableUser<T>(
 		}
 
 		const onSave = async () => {
-			const response = await axios.post(`/${sourceName}/${id}`, { user: data })
+			const response = await axios.put(`/${sourceName}/${id}`, { user: data })
 			if (response.statusText === 'OK') {
 				toast.success('Successfully Saved')
 				setData(response.data)

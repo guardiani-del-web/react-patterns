@@ -70,7 +70,7 @@ app.get('/users/:id', (req, res) => {
 	res.json(users.find(user => user.id === id))
 })
 
-app.post('/users/:id', (req, res) => {
+app.put('/users/:id', (req, res) => {
 	const { id } = req.params
 	const { user: updatedUser } = req.body
 	users = users.map(user => (user.id === id ? updatedUser : user))

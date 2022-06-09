@@ -32,7 +32,7 @@ export const useEditableUser = (url: string) => {
 
 	const onSave = async (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
-		const response = await axios.post(url, { user: state })
+		const response = await axios.put(url, { user: state })
 		if (response.statusText === 'OK') {
 			toast.success('Successfully Saved')
 			setState(response.data)
